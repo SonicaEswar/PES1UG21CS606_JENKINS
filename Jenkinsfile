@@ -14,6 +14,11 @@ pipeline{
         echo 'Test success'
       }
     }
+    stage('Deploy') {
+            steps {
+                eco 'Deployment? idk'
+            }
+        }
   }
   post{
     failure{

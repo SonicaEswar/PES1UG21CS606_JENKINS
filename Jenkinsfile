@@ -1,32 +1,23 @@
 pipeline{
-  agent any
-  stages{
+  agent any 
+  stages {
     stage('Build'){
       steps{
-        sh 'cd main && g++ -o a hello.cpp'
-        build 'PES1UG20CS606-1'
-        echo 'build stage successfull'
+        sh 'cd main  && g++ working.cpp'
+        echo 'Build success'
       }
+    
     }
     stage('Test'){
       steps{
-        sh 'cd main && ./a'
-        echo 'test stage sucessfull'
-      }
-    }
-    stage('Deploy'){
-      steps{
-        mh 'deploy'
-        echo 'Deply stage sucessfull'
+        sh 'cd main && ./a.out'
+        echo 'Test success'
       }
     }
   }
   post{
-    always{
-      echo 'pineline is successfull'
-    }
     failure{
-      echo 'pipeline falied'
+      echo 'pipeline failed'
     }
   }
 }

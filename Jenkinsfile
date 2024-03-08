@@ -3,24 +3,30 @@ pipeline{
   stages{
     stage('Build'){
       steps{
-        build 'PES1UG21CS606-1'
-        sh 'g++ main.cpp -o output'
+        sh 'cd main && g++ -o a hello.cpp'
+        build 'PES1UG20CS606-1'
+        echo 'build stage successfull'
       }
     }
     stage('Test'){
       steps{
-        sh './output'
+        sh 'cd main && ./a'
+        echo 'test stage sucessfull'
       }
     }
     stage('Deploy'){
       steps{
-        echo 'deploy'
+        mh 'deploy'
+        echo 'Deply stage sucessfull'
       }
     }
   }
   post{
+    always{
+      echo 'pineline is successfull'
+    }
     failure{
-      error 'Pipeline failed'
+      echo 'pipeline falied'
     }
   }
 }
